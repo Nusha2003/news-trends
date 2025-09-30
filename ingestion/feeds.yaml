@@ -1,0 +1,11 @@
+feeds:
+  - name: NYT
+    url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+  - name: Fox
+    url: https://moxie.foxnews.com/google-publisher/latest.xml
+  - name: BBC
+    url: https://feeds.bbci.co.uk/news/rss.xml
+  - name: CBS
+    url: https://www.cbsnews.com/latest/rss/main
+  - name: ABC
+    url: https://abcnews.go.com/abcnews/topstories
