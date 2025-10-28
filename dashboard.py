@@ -1,9 +1,22 @@
 import streamlit as st
 import pandas as pd
-import psycopg2
 import plotly.express as px
 import os
 from dotenv import load_dotenv
+
+# Try to import database libraries, fallback gracefully if not available
+try:
+    import psycopg2
+    PSYCOPG2_AVAILABLE = True
+except ImportError:
+    PSYCOPG2_AVAILABLE = False
+    st.warning("⚠️ psycopg2 not available. Running in demo mode with sample data.")
+
+try:
+    from sqlalchemy import create_engine
+    SQLALCHEMY_AVAILABLE = True
+except ImportError:
+    SQLALCHEMY_AVAILABLE = False
 
 # Load environment variables
 load_dotenv()
@@ -11,6 +24,10 @@ load_dotenv()
 # --- Connect to Postgres ---
 @st.cache_data(ttl=60)
 def load_data():
+    # If psycopg2 is not available, use sample data
+    if not PSYCOPG2_AVAILABLE:
+        return create_sample_data()
+    
     try:
         # Use environment variables for database connection
         conn = psycopg2.connect(

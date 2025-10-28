@@ -31,6 +31,10 @@ cd news-trends
 
 2. Install dependencies:
 ```bash
+# For minimal deployment (demo mode only)
+pip install -r requirements_minimal.txt
+
+# For full functionality with database support
 pip install -r requirements_streamlit.txt
 ```
 
@@ -130,6 +134,18 @@ news-trends/
     ├── feeds.yaml
     └── rss_producer.py
 ```
+
+## Troubleshooting
+
+### psycopg2 Import Error
+
+If you encounter a `psycopg2` import error on Streamlit Cloud:
+
+1. **Use the minimal requirements**: Use `requirements_minimal.txt` instead of `requirements_streamlit.txt`
+2. **The app will automatically run in demo mode** with sample data
+3. **No database connection required** for basic functionality
+
+The app is designed to gracefully handle missing database dependencies and will show sample data instead.
 
 ## Contributing
 
